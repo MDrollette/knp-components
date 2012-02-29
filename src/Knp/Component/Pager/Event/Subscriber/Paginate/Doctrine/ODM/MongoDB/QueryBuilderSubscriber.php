@@ -11,9 +11,6 @@ class QueryBuilderSubscriber implements EventSubscriberInterface
     public function items(ItemsEvent $event)
     {
         if ($event->target instanceof Builder) {
-            // get the count using a count() query
-            $event->count = $event->target->count()->getQuery()->execute();
-
             // change target into query
             $event->target = $event->target->find()->getQuery();
         }
