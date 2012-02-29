@@ -11,8 +11,11 @@ class QuerySubscriber implements EventSubscriberInterface
     public function items(ItemsEvent $event)
     {
         if ($event->target instanceof Query) {
-            // count
-            $event->count = $event->target->count();
+            // only recalculate the count if it hasn't already been set in a previous subscriber
+            if (null === $event->count) {
+                // count
+                $event->count = $event->target->count();
+            }
             // items
             $type = $event->target->getType();
             if ($type !== Query::TYPE_FIND) {
