@@ -12,14 +12,15 @@ class QueryBuilderSubscriber implements EventSubscriberInterface
     {
         if ($event->target instanceof Builder) {
             // change target into query
-            $event->target = $event->target->find()->getQuery();
+            $event->target = $event->target->getQuery();
         }
     }
 
     public static function getSubscribedEvents()
     {
         return array(
-            'knp_pager.items' => array('items', 10 /*make sure to transform before any further modifications*/)
+            'knp_pager.items' => array('items', 10/*make sure to transform before any further modifications*/)
         );
     }
 }
+

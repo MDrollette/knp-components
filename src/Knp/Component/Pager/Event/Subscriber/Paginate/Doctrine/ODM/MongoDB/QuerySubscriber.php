@@ -46,3 +46,4 @@ class QuerySubscriber implements EventSubscriberInterface
         );
     }
 }
+
